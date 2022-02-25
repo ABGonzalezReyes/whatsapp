@@ -1,0 +1,112 @@
+<div id="sidebar">
+    <div id="row1">
+        <div id="sidebarHeader">
+            <div class="avatarContainer">
+                <img src="../../assets/images/user.png" />
+            </div>
+            <div class="actionsContainer">
+                <img class="svg" src="../../assets/images/statusIcon.svg">
+                <div ngbDropdown class="d-inline-block">
+                    <img class="svgIcon"  id="dropdownBasic1" ngbDropdownToggle  src="../../assets/images/chatIcon.svg">
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <div>
+                            <input id="inputNewFriends" (keyup)="onKeyNewFriends($event)" type="text" placeholder="Search new friends" />
+                        </div>
+                        <div *ngIf="userFinded">
+                            <!--<button ngbDropdownItem *ngFor="let user of resultUsers"> -->
+                            <button ngbDropdownItem >
+                                {{userFinded.email}} 
+                                <div *ngIf="!userfindedFlag; else added">
+                                    <button type="button" (click)="addNewFriend(userFinded)" class="btn btn-info">
+                                            <fa-icon [icon]="faPlusCircle"></fa-icon>
+                                    </button>
+                                </div>
+                                <ng-template #added>
+                                    <!--<button type="button" class="btn btn-info">-->
+                                        <fa-icon [icon]="faCheckCircle"></fa-icon>
+                                    <!-- </button> -->
+                                </ng-template>
+                            </button>
+                        </div>
+                        
+                        
+                        <!--<button ngbDropdownItem>Action - 1</button>
+                        <button ngbDropdownItem>Another Action</button>
+                        <button ngbDropdownItem>Something else is here</button> -->
+                    </div>
+                </div>
+                <img class="svg" src="../../assets/images/moreVertIcon.svg">
+            </div>
+        </div>
+        <div id="searchBox">
+            <img width="18" src="../../assets/images/searchIcon.svg" />
+            <input [(ngModel)]='searchText' type="text" placeholder="Search or start the new chat" />
+        </div>
+    </div>
+    <div id="sidebarContent">
+        <!--<div id="noConversations">
+            All chats are archived
+        </div> -->
+        <div id="conversations">
+            <!-- <div *ngFor="let chat of getChats" class="conversation" (click)="conversationClicked.emit(chat)">
+                <div class="picture">
+                    <img src="../../assets/images/noPic.svg" />
+                </div>
+                <div class="content">
+                    <div class="user">
+                        <div class="name">{{chat.user}}</div>
+                        <div class="hour">{{chat.timeUltimateMessage}}</div>
+                    </div>
+                    <div class="message">
+                        <img *ngIf="!chat.user" src="../../assets/images/doubleTick.svg">
+                        <img *ngIf="chat.user" src="../../assets/images/doubleTickBlue.svg">
+                        {{ (chat.lastMessage.length > 20) ? ( chat.lastMessage | slice:0:20) + '...' :
+                        (chat.lastMessage)}}
+                    </div>
+                </div>
+            </div>-->
+            
+            <div *ngIf="all$ |async; let all">
+                <div *ngFor="let chat2 of all" class="conversation" (click)="chatClicked.emit(chat2)"  >
+                    <div class="picture">
+                        <img src="../../assets/images/noPic.svg" />
+                    </div>
+                    <div class="content">
+                        <div class="user">
+                                <div class="name">
+                                    <div *ngIf="chat2.countNotReadedMessages > 0" class="notReadedMessages">
+                                        {{chat2.countNotReadedMessages}}
+                                    </div>
+                                    <div>
+                                        {{ chat2.nameContact && (chat2.nameContact.length > 15) ? ( chat2.nameContact | slice:0:15) + '...' :
+                                        (chat2.nameContact)}}
+                                    </div>
+                                    
+                                </div>
+                            <div class="hour"> {{chat2.timeUltimateMessage}} </div>
+                        </div>
+                        <div class="message">
+                            <div *ngIf="chat2.me">
+                                <div *ngIf="chat2.statusRead; else noLeido">
+                                     <img src="../../assets/images/doubleTickBlue.svg">
+                                </div>
+                                <ng-template #noLeido>
+                                     <img src="../../assets/images/doubleTick.svg">
+                                </ng-template>
+                            </div>
+                            <!--<img *ngIf="chat2.user" src="../../assets/images/doubleTickBlue.svg">-->
+                        {{ (chat2.ultimateMessage.length > 20) ? ( chat2.ultimateMessage | slice:0:20) + '...' :
+                            (chat2.ultimateMessage)}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <button style="width: 200px; height: 100px;background-color: blueviolet;" (click)="printAll()">
+                algo</button> -->
+
+
+        </div>
+
+    </div>
+</div>

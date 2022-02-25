@@ -1,0 +1,59 @@
+<div id="chat">
+    <div id="header">
+        <div class="userContainer">
+            <div class="avatarContainer">
+                <img src="../../assets/images/user.png" />
+            </div>
+            <div class="dataContainer">
+                <div id="nameUser">
+                    <!--{{chat.user}} -->
+                    {{chatFirebase.nameContact}} 
+                </div>
+                <div id="timeLastConection">
+                    <!--{{chat.ultimateConnection}}-->
+                    {{chatFirebase.timeUltimateMessage}}
+                </div>
+            </div>
+        </div>
+        <div class="optionsContainer">
+            <img src="../../assets/images/searchIcon.svg" />
+            <img src="../../assets/images/moreVertIcon.svg" />
+        </div>
+    </div>
+    
+        <!-- <div id="content" #idContent>
+            <div class="message" [ngClass]="{me : (messageContent.IdUser == idUsuario) }" *ngFor="let messageContent of chatsFirebase">
+                <div class="messageContent">
+                    {{messageContent.message}}
+                    <div class="timeMessage">{{messageContent.time}}</div>
+                </div>
+            </div>
+            <div #idFocus id="idFocus"></div>
+        </div> -->
+        
+            <section waIntersectionObserver waIntersectionThreshold="0.5" id="content" #idContent>
+                <div *ngIf="showChats">
+                    <div *ngFor="let messageContent of chatsFirebase" id="{{messageContent.keyvalue}}"  (waIntersectionObservee)="onIntersection($event, messageContent)" class="message"
+                        [ngClass]="{me : (messageContent.IdUser == idUsuario) }" >
+                        <div class="messageContent">
+                            {{messageContent.message}}
+                            <div class="timeMessage">{{messageContent.time}}</div>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+        
+    
+
+    <div id="footer">
+        <img (click)="emojiPickerVisible= !emojiPickerVisible" src="../../assets/images/smileIcon.svg" />
+        <emoji-mart (emojiClick)="addEmoji($event)" *ngIf="emojiPickerVisible" title="Pick your emoji" emoji="point_up">
+        </emoji-mart>
+        <div id="textarea">
+            <textarea [(ngModel)]="message" (keyup.enter)="submitMessage($event)"></textarea>
+        </div>
+
+        <img src="../../assets/images/voiceIcon.svg" />
+    </div>
+</div>

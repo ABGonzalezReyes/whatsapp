@@ -1,0 +1,134 @@
+#chat {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+
+  #header {
+    display: flex;
+    min-height: 67px;
+    background-color: #ededed;
+    border-left: 1px solid #dadada;
+    justify-content: space-between;
+    .userContainer {
+      display: flex;
+      //width: 250px;
+      align-items: center;
+      flex-direction: row;
+      .avatarContainer {
+        //flex-basis: 43px;
+        min-width: 43px;
+        max-width: 43px;
+        margin-left: 10px;
+        margin-right: 10px;
+        img {
+          max-width: 100%;
+          border-radius: 50%;
+        }
+      }
+      .dataContainer {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        #nameUser {
+          height: 50%;
+          width: 100%;
+          display: flex;
+          align-items: flex-end;
+          font-size: 15px;
+        }
+        #timeLastConection {
+          height: 50%;
+          width: 100%;
+          text-align: left;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .optionsContainer {
+      display: flex;
+      img {
+        margin-right: 10px;
+      }
+      margin-right: 10px;
+    }
+  }
+
+  #content {
+    display: flex;
+    flex-grow: 1;
+    background-color: #e7dfdc;
+
+    flex-direction: column;
+    //flex-direction: column-reverse;
+    overflow: scroll;
+    //justify-content: flex-end;
+    padding: 20px 50px;
+
+    .message {
+      margin-top: 10px;
+      color: #767676;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .messageContent {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 10px 10px 0 10px;
+        max-width: 60%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        width: 100%;
+        .timeMessage {
+          text-align: right;
+          color: #cecece;
+          font-size: 9px;
+          margin-bottom: 5px;
+        }
+      }
+
+      &.me {
+        align-items: flex-end;
+        .messageContent {
+          background-color: #dcf7c5;
+        }
+      }
+    }
+  }
+
+  #footer {
+    display: flex;
+    min-height: 60px;
+    background-color: #f0f0f0;
+    padding-left: 10px;
+    align-items: center;
+    img {
+      width: 22px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    emoji-mart {
+      position: absolute;
+      bottom: 50px;
+    }
+    #textarea {
+      display: flex;
+      flex-grow: 1;
+      textarea {
+        flex-grow: 1;
+        border: 1px solid #f7f7f7;
+        border-radius: 20px;
+        outline: none;
+        resize: none;
+        font-family: sans-serif;
+        box-sizing: border-box;
+        padding-left: 15px;
+        &::placeholder {
+          color: #9a9a9a;
+        }
+      }
+    }
+  }
+}

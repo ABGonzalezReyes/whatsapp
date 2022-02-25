@@ -1,0 +1,64 @@
+.content {
+  width: 70%;
+  margin: 5% auto auto;
+  padding: auto;
+
+  .container {
+    margin: 0;
+    img {
+      justify-content: center;
+      margin-top: 7px;
+    }
+    .btn {
+      height: 50px;
+    }
+    .facebook {
+      background-color: #3b5998;
+    }
+    .facebook:hover {
+      background-color: #3a5183;
+    }
+    .twitter {
+      background-color: #1da1f2;
+    }
+    .twitter:hover {
+      background-color: #1c93dd;
+    }
+    .google {
+      background-color: #ea4335;
+    }
+    .google:hover {
+      background-color: #d53f33;
+    }
+  }
+}
+
+.contents {
+  background-color: white;
+  box-shadow: 0 2px 3px 0 rgb(0 0 0 / 20%);
+
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 10px;
+}
+
+.separatorText {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.Registro {
+  border-top: 1px solid rgb(0 0 0 / 20%);
+  padding-top: 20px;
+  margin-top: 10px;
+  text-align: center;
+  .btn-registro {
+    padding: 10px 20px 10px;
+    border: 1px solid #167bff;
+    border-radius: 5px;
+  }
+  .btn-registro:hover {
+    box-shadow: 0 2px 3px 0 #167bff;
+    text-decoration: none;
+  }
+}

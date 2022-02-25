@@ -1,0 +1,111 @@
+<a href="/login" id="iconBack">
+    <button type="button" class="btn btn-primary btn-back">
+        <fa-icon [icon]="faArrowCircleLeft" stackItemSize="2x"></fa-icon>
+    </button>
+</a>
+
+<div class="content">
+    <div class="container">
+        <div class="align-items-center">
+            <div class="form-block">
+                <div class="mb-4">
+                    <div class="titulo-registro">
+                        <h3> <strong>Whatssap</strong><br>Registro de Usuario</h3>
+                    </div>
+                </div>
+                <form [formGroup]="formularioRegistro" (ngSubmit)="onRegister()" >
+                    <div class="form-group first">
+                        <label for="nameuser">Nombre de Usuario</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="nameuser" formControlName="nameuser">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <fa-icon [icon]="faUser"></fa-icon>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="
+                            ( formularioRegistro.controls['nameuser'].invalid && formularioRegistro.controls['nameuser'].touched ) 
+                            || formularioRegistro.controls['nameuser'].dirty">
+                        <div class="alert alert-danger" role="alert" *ngIf="formularioRegistro.controls['nameuser'].errors?.required">
+                            El Nombre de Usuario es requerido
+                        </div>
+                    </div>
+                    <div class="form-group first">
+                        <label for="email">Correo Electrónico</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="email" formControlName="email">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <fa-icon [icon]="faUser"></fa-icon>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        *ngIf="
+                        ( formularioRegistro.controls['email'].invalid && formularioRegistro.controls['email'].touched ) 
+                        || formularioRegistro.controls['email'].dirty"
+                    >
+                        {{formularioRegistro.controls['email'].errors?.pattern}}
+                        <div 
+                            class="alert alert-danger" role="alert"
+                            *ngIf="formularioRegistro.controls['email'].errors?.required"
+                        >
+                            El Correo es requerido
+                        </div>
+                        <div
+                            class="alert alert-danger" role="alert"
+                            *ngIf="formularioRegistro.controls['email'].errors?.email || emailFormError"
+                        >
+                            Introduce un email Válido, por favor.
+                        </div>
+                    </div>
+                    <div class="form-group last mb-4">
+                        <label for="password">Contraseña</label>
+                        <div class="input-group">
+                            <input [type]="passwordEye ? 'text' : 'password'" class="form-control" id="password" formControlName="password" autocomplete="off">
+                            <div (click)="passwordEyeEvent()" class="input-group-append">
+                                <span class="input-group-text">
+                                    <fa-icon *ngIf="!passwordEye" [icon]="faEyeSlash"></fa-icon>
+                                    <fa-icon *ngIf="passwordEye" [icon]="faEye"></fa-icon>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" role="alert"
+                        *ngIf="formularioRegistro.controls['password'].errors && formularioRegistro.controls['password'].touched"
+                    > 
+                    La contraseña debe tener 8 Carácteres y debe contener:
+                    <br>Mínimo 1 Letra Mayúscula
+                    <br>Mínimo 1 Letra Minúscula
+                    <br>Mínimo 1 Carácter Especial
+                    </div>
+                    <div class="form-group last mb-4">
+                        <label for="verifyPassword">Confirmar Contraseña</label>
+                        <div class="input-group">
+                            <input [type]="passwordConfirmedEye ? 'text' : 'password'" class="form-control" id="verifyPassword" formControlName="verifyPassword" autocomplete="off">
+                            <div (click)="passwordConfirmedEyeEvent()" class="input-group-append">
+                                <span class="input-group-text">
+                                    <fa-icon *ngIf="!passwordConfirmedEye" [icon]="faEyeSlash"></fa-icon>
+                                    <fa-icon *ngIf="passwordConfirmedEye" [icon]="faEye"></fa-icon>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger" role="alert" 
+                    *ngIf="
+                         formularioRegistro.controls['verifyPassword'].touched 
+                         && formularioRegistro.controls['verifyPassword'].errors?.mustMatch">
+                        Las campos de contraseñas deben coincidir
+                    </div>
+                    <input type="submit" [disabled]="formularioRegistro.invalid" value="Registrarme" class="btn btn-pill text-white btn-block btn-primary">
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
